@@ -1,23 +1,18 @@
-import createSecretKey as secret
+SHARED_KEY = 6
 
-message = input("write your message to send ")
+message = input("input your message ")
 
 def sendMessage(message):
     cypher = [ord(char) for char in message]
-    
-    secretKey = secret.createKey()
-    
+
     encryptedMessage = []
 
     for char in cypher:
-        encryptedMessage.append(char*secretKey)
-    
-    encryptedFile = open("symmetrical/encryptedFile.txt", 'w')
+        encryptedMessage.append(char*SHARED_KEY)
 
+    encryptedFile = open("symmetrical/encryptedFile.txt", 'w')
+    
     for char in encryptedMessage:
         encryptedFile.write(str(char) + " ")
-
-    encryptedFile.write("\n\n" + str(secretKey))
-    encryptedFile.close()
 
 sendMessage(message)
